@@ -16,5 +16,14 @@
       "price": 325451
     }
   ],
-  "categories": []
+  "categories": [
+    {
+      "id": 1,
+      "category": "Otomotif"
+    },
+    {
+      "id": 2,
+      "category": "Life Style"
+    }
+  ]
 }
