@@ -1,0 +1,20 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "nama": "Helm",
+      "price": 5040000
+    },
+    {
+      "id": 2,
+      "nama": "Jacket",
+      "price": 651651
+    },
+    {
+      "id": 3,
+      "nama": "Kemeja",
+      "price": 325451
+    }
+  ],
+  "categories": []
+}
