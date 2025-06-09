@@ -1,33 +1,25 @@
-import http from "http";
+import express, { Application, Request, Response } from "express";
 import fs from "fs";
 // Define API port
 const PORT: number = 2066;
 
 // Define API config
-const server = http.createServer((
-    request: http.IncomingMessage, response: http.ServerResponse
-) => {
-    // check incoming request
-    console.log("READ REQUEST", request.method, request.url);
-    if (request.method === "GET" && request.url === "/products") {
-        // Membaca isi file db.json
-        const data = JSON.parse(fs.readFileSync("./db.json").toString());
-        console.log(data.products);
-        // send response
-        response.write(JSON.stringify(data.products));
-        response.end();
-    } else if (request.method === "GET" && request.url === "/categories") {
-        // send response
-        response.write("DATA CATEGORIES");
-        response.end();
-    } else {
-        // send response
-        response.write("URL NOT FOUND");
-        response.end();
-    }
+const server: Application = express();
+
+// Define req methode and url
+server.get("/products", (request: Request, response: Response) => {
+    const data = JSON.parse(fs.readFileSync("./db.json").toString());
+
+    response.status(200).send(data.products);
+});
+
+server.get("/categories", (req: Request, res: Response) => {
+    const data = JSON.parse(fs.readFileSync("./db.json").toString());
+
+    res.status(200).send(data.categories);
 })
 
 // Run server
 server.listen(PORT, () => {
-    console.log(`API Running at http://localhost:${PORT}`);
+    console.log(`API RUNNING at http://localhost:${PORT}`);
 })
