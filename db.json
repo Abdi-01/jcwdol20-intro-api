@@ -2,18 +2,23 @@
   "products": [
     {
       "id": 1,
-      "nama": "Helm",
+      "name": "Helm",
       "price": 5040000
     },
     {
       "id": 2,
-      "nama": "Jacket",
+      "name": "Jacket",
       "price": 651651
     },
     {
       "id": 3,
-      "nama": "Kemeja",
+      "name": "Kemeja",
       "price": 325451
+    },
+    {
+      "id": 4,
+      "name": "Sandal",
+      "price": 15000
     }
   ],
   "categories": [
