@@ -1,4 +1,4 @@
-import express, { Application, Request, Response } from "express";
+import express, { Application, NextFunction, Request, response, Response } from "express";
 import fs from "fs";
 // Define API port
 const PORT: number = 2066;
