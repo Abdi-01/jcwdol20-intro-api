@@ -20,3 +20,16 @@ export const getProducts = (req: Request, res: Response) => {
         res.status(200).send(data.products);
     }
 }
+
+export const getProductbyName = (req: Request, res: Response) => {
+    console.log(req.params.name);
+
+    const data = JSON.parse(fs.readFileSync("./db.json").toString());
+
+    const filter = data.products.filter((val: IProduct) => val.name === req.params.name)
+    if (filter.length === 0) {
+        res.status(404).send("Data tidak ditemukan")
+    } else {
+        res.status(200).send(filter[0]);
+    }
+}

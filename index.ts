@@ -8,6 +8,9 @@ const server: Application = express();
 
 server.use(express.json()); // untuk membaca data req.body
 
+// import router config
+import productsRouter from "./routers/products.router";
+
 interface IProduct {
     id: number;
     name: string;
@@ -15,34 +18,7 @@ interface IProduct {
 }
 
 // Define req methode and url
-server.get("/products", (request: Request, response: Response) => {
-    console.log(request.query.name);
-
-    const data = JSON.parse(fs.readFileSync("./db.json").toString());
-    // 1. jika ada data dari req.query maka filter datanya
-    if (request.query.name) {
-        const filter = data.products.filter((val: IProduct) => val.name === request.query.name)
-        // 2. Lalu kirim hasil filter sebagai response
-        response.status(200).send(filter);
-    } else {
-        // 3. Tetapi, jika tidak ada data apapun dari req.query maka kirim seluruh data sebagai response
-        response.status(200).send(data.products);
-    }
-});
-
-server.get("/products/:name", (request: Request, response: Response) => {
-    console.log(request.params.name);
-
-    const data = JSON.parse(fs.readFileSync("./db.json").toString());
-
-    const filter = data.products.filter((val: IProduct) => val.name === request.params.name)
-    if (filter.length === 0) {
-        response.status(404).send("Data tidak ditemukan")
-    } else {
-        response.status(200).send(filter[0]);
-    }
-
-});
+server.use("/products", productsRouter);
 
 server.post("/products", (req: Request, res: Response) => {
     console.log(req.body);
